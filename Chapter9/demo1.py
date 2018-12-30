@@ -3,6 +3,6 @@ class Dog():
         self.name=name
         self.age=age
     def sit(self):
-        print(self.name+"is sitting")
+        print(self.name+"is sitting")f
     def roll(self):
         print(self.age+"is rolling")
