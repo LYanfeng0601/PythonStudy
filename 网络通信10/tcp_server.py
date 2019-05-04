@@ -18,9 +18,9 @@ def main():
 		
 		#  5. 接受发送数据
 		while True:
-			recvdata = new_socket.recv(1024)
-			print(recvdata)
-			if recvdata:
+			recv_data = new_socket.recv(1024)
+			print(recv_data)
+			if recv_data:
 
 				print("客户：%s" % recv_data.decode("utf-8"))
 				send_data = input("to client")
