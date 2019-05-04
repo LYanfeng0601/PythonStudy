@@ -20,7 +20,7 @@ def main():
 		while True:
 			recvdata = new_socket.recv(1024)
 			print(recvdata)
-			if recvdata：
+			if recvdata:
 
 				print("客户：%s" % recv_data.decode("utf-8"))
 				send_data = input("to client")
