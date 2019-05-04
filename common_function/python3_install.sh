@@ -5,6 +5,7 @@ export work_dir=/usr1/ci_work
 mkdir -p ${work_dir}
 cd ${work_dir}
 yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make
+rm -rf Python-3*
 wget ${PYTHON_URL}/${PYTHON_VERSION}
 if [ "$?"=="0" ];then
 	echo "wget success"
