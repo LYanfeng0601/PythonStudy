@@ -7,7 +7,7 @@ def deal_with(sock_request,addr_request):
 		#send_data = input("please input your words")
 		send_data = "HTTP/1.1 200 OK\r\n"
 		send_data += "\r\n"
-		sned_data += "<h1>hahhahha</h1>"
+		send_data += "<h1>hahhahha</h1>"
 		#if recv_data:
 		#	print(recv_data.decode("utf-8"))
 		sock_request.send(send_data.encode("utf-8"))
