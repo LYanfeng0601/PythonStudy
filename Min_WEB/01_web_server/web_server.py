@@ -2,12 +2,12 @@ import socket
 import re
 import multiprocessing
 
-class WGIServer(object):
+class WSGIServer(object):
 	def __init__(self):
-		# 1. 创建套接字
-    		self.tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		"""1. 创建套接字"""
+    	self.tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		self.tcp_server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
-		# 2. 绑定端口
+		"""2. 绑定端口"""
 		self.tcp_server_socket.bind(("", 7890))
 		# 3. 变为监听套接字
 		self.tcp_server_socket.listen(128)
@@ -65,18 +65,18 @@ class WGIServer(object):
 	def run_forever(self):
 	    """用来完成整体的控制"""
 	    while True:
-		# 4. 等待新客户端的链接
-		new_socket, client_addr = self.tcp_server_socket.accept()
+			# 4. 等待新客户端的链接
+			new_socket, client_addr = self.tcp_server_socket.accept()
 
-		# 5. 为这个客户端服务
-		p = multiprocessing.Process(target=self.service_client, args=(new_socket,))
-		p.start()
-		new_socket.close()
-		# 关闭监听套接字
+			# 5. 为这个客户端服务
+			p = multiprocessing.Process(target=self.service_client, args=(new_socket,))
+			p.start()
+			new_socket.close()
+			#关闭监听套接字
 		tcp_server_socket.close()
-
-	def main():
-		run_forever()
+def main(self):
+	wsgi_server = WSGIServer()
+	wsgi_server.run_forever()
 
 if __name__ == "__main__":
-    main()
+	main()
