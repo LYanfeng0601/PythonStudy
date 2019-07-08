@@ -1,8 +1,9 @@
 #coding-"UTF-8"
-import mini_frame
+#import mini_frame_01
 import time
 import re
 import socket
+import dynamic
 import multiprocessing
 
 class WSGIServer(object):
@@ -41,13 +42,19 @@ class WSGIServer(object):
 					new_socket.send(html_content)
 			else:
 				# 如果是以.py结尾，认为是动态请求
-				header = "HTTP/1.1 200 OK\r\n"
-				header += "\r\n"
-				#body = "hahha %s" % time.ctime()
-				body = mini_frame.application(file_name)
-				response =header + body
+				env = dict()
+				env['PATH_INFO'] = file_name
+				body = dynamic.mini_frame_01.application(env,self.set_response_header)
+				header = "HTTP/1.1 %s\r\n" % self.status
+				for tmp in self.headers:
+					header += "%s:%s\r\n" % (tmp[0],tmp[1])
+				header += "\r\n"	
+				response = header + body
 				new_socket.send(response.encode("utf-8"))
 			new_socket.close()
+	def set_response_header(self,status,headers):
+		self.status = status
+		self.headers = headers
 	
 	def run_forever(self):
 		while True:

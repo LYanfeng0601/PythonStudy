@@ -19,5 +19,6 @@ if __name__ == "__main__":
 	timeout = 30
 	user = "root"
 	password = "root"
-	sftp_exec_command("ls")
+	sftp_exec_command("cd /home;mkdir 111;cd 111;touch flag")
+	#print(stdout.read().decode('utf-8'))
 
