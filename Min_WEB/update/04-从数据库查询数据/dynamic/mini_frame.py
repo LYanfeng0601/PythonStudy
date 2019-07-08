@@ -31,10 +31,10 @@ def index():
     # content = re.sub(r"\{%content%\}", my_stock_info, content)
     # 创建Connection连接
     conn = connect(host='192.168.0.103', port=3306, user='root',
-                   password='root', database='mysql', charset='utf8')
+                   password='root', database='stock_db', charset='utf8')
     # 获得Cursor对象
     cs = conn.cursor()
-    cs.execute("select * from user;")
+    cs.execute("select * from infor;")
     stock_infos = cs.fetchall()
     cs.close()
     conn.close()
@@ -46,8 +46,8 @@ def index():
             <td> %s </td>
             <td> 33 </td>
             <td> 22 </td>
-            <td> 23</td>
-            <td> 88 </td>
+            <td> %s</td>
+            <td> %s </td>
             <td> %s</td>
             <td>
                 <input type="button" value="添加" id="add" systemidvaule='00007'> 
@@ -57,7 +57,7 @@ def index():
     html = ''
     for line_info in stock_infos:
         html += str_template % (line_info[0], line_info[1], line_info[2], line_info[
-                                3], line_info[4])
+                                3], line_info[4],line_info[5])
 
     content = re.sub(r"\{%content%\}", str(html), content)
 
