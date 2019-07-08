@@ -2,7 +2,7 @@ import socket
 import re
 import multiprocessing
 import time
-# import dynamic.mini_frame
+#import dynamic.mini_frame
 import sys
 
 
@@ -29,7 +29,7 @@ class WSGIServer(object):
         # .....
         request = new_socket.recv(1024).decode("utf-8")
         # print(">>>"*50)
-        # print(request)
+        print(request)
 
         request_lines = request.splitlines()
         print("")
@@ -48,7 +48,7 @@ class WSGIServer(object):
 
         # 2. 返回http格式的数据，给浏览器
         # 2.1 如果请求的资源不是以.py结尾，那么就认为是静态资源（html/css/js/png，jpg等）
-        if not file_name.endswith(".py"):
+        if not file_name.endswith(".html"):
             try:
                 f = open(self.static_path + file_name, "rb")
             except:
@@ -129,7 +129,7 @@ def main():
     else:
         print("请按照以下方式运行:")
         print("python3 xxxx.py 7890 mini_frame:application")
-        return
+        return 	#结束函数
     
     # mini_frame:application
     ret = re.match(r"([^:]+):(.*)", frame_app_name)
@@ -142,7 +142,7 @@ def main():
         return
 
     with open("./web_server.conf") as f:
-        conf_info = eval(f.read())
+        conf_info = eval(f.read()) # eval 变成字典
 
     # 此时 conf_info是一个字典里面的数据为：
     # {
