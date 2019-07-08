@@ -2,8 +2,7 @@ def add_qx(func):
     print("开始装饰权限")
 
     def call_fun(*args, **kargs):
-        print("权限验证一")
-        print("权限验证一")
+        print("权限验证x")
         func(*args, **kargs)
     return call_fun
 
@@ -13,9 +12,9 @@ def set_func(func):
 
     def call_fun(*args, **kargs):
         print("权限验证一")
-        print("权限验证一")
         func(*args, **kargs)
     return call_fun
+
 
 @add_qx
 @set_func
@@ -23,3 +22,21 @@ def login():
     print("***************test1******************")
 
 login()
+print(100 * "*")
+
+# 实例
+def set_fun_2(func):
+	def call_func():
+		return "<td>" + func() + "</td>"
+	return call_func
+def set_fun_1(func):
+    def call_fun():
+        return "<h1>" + func() + "</h1>"
+    return call_fun
+
+@set_fun_2
+@set_fun_1
+def get_str():
+    return "HHHHH"
+
+print(get_str())
