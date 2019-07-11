@@ -55,8 +55,9 @@ def index():
         < / tr >
     """
     html = ''
-    for line_info stock_infos:
-        html += str_template %(line_info[0],line_info[1],line_info[2],line_info[3],line_info[4],line_info[5],line_info[6],line_info[7])
+    for line_info in stock_infos:
+        html += str_template % (line_info[0], line_info[1], line_info[2], line_info[
+                                3], line_info[4], line_info[5], line_info[6], line_info[7])
 
     content = re.sub(r"\{%content%\}", str(html), content)
 
