@@ -41,19 +41,24 @@ def index():
 
     str_template = """
         <tr >
-            <th> 序号 </th>
-            <th> 股票代码 </th>
-            <th> 股票简称 </th>
-            <th> 涨跌幅 </th>
-            <th> 换手率 </th>
-            <th> 最新价(元) </th>
-            <th> 前期高点 </th>
-            <th> 前期高点日期 </th>
-            <th> 添加自选 </th>
+            <td> %s </td>
+            <td> %s </td>
+            <td> %s </td>
+            <td> %s </td>
+            <td> %s </td>
+            <td> %s </td>
+            <td> 0.88 </td>
+            <td> %s</td>
+            <td>
+                <input type="button" value="添加" id="add" systemidvaule='00007'> 
+            </td>
         < / tr >
     """
+    html = ''
+    for line_info stock_infos:
+        html += str_template %(line_info[0],line_info[1],line_info[2],line_info[3],line_info[4],line_info[5],line_info[6],line_info[7])
 
-    content = re.sub(r"\{%content%\}", str(str_template), content)
+    content = re.sub(r"\{%content%\}", str(html), content)
 
     return content
 
