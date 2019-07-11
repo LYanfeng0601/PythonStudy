@@ -15,6 +15,7 @@ def route(url):
     def set_func(func):
         # URL_FUNC_DICT["/index.py"] = index
         URL_FUNC_DICT[url] = func
+
         def call_func(*args, **kwargs):
             return func(*args, **kwargs)
         return call_func
@@ -29,17 +30,33 @@ def index():
     # my_stock_info = "哈哈哈哈 这是你的本月名称....."
     # content = re.sub(r"\{%content%\}", my_stock_info, content)
     # 创建Connection连接
-    conn = connect(host='192.168.0.103',port=3306,user='root',password='root',database='mysql',charset='utf8')
+    conn = connect(host='192.168.0.103', port=3306, user='root',
+                   password='root', database='mysql', charset='utf8')
     # 获得Cursor对象
     cs = conn.cursor()
     cs.execute("select * from user;")
     stock_infos = cs.fetchall()
     cs.close()
     conn.close()
-    content = re.sub(r"\{%content%\}", str(stock_infos), content)
+
+    str_template = """
+        <tr >
+            <th> 序号 </th>
+            <th> 股票代码 </th>
+            <th> 股票简称 </th>
+            <th> 涨跌幅 </th>
+            <th> 换手率 </th>
+            <th> 最新价(元) </th>
+            <th> 前期高点 </th>
+            <th> 前期高点日期 </th>
+            <th> 添加自选 </th>
+        < / tr >
+    """
+
+    content = re.sub(r"\{%content%\}", str(str_template), content)
 
     return content
-     
+
 
 @route("/center.html")
 def center():
@@ -55,7 +72,7 @@ def center():
 
 def application(env, start_response):
     start_response('200 OK', [('Content-Type', 'text/html;charset=utf-8')])
-    
+
     file_name = env['PATH_INFO']
     # file_name = "/index.py"
 
@@ -74,10 +91,3 @@ def application(env, start_response):
         return URL_FUNC_DICT[file_name]()
     except Exception as ret:
         return "产生了异常：%s" % str(ret)
-
-
-
-
-
-
-
