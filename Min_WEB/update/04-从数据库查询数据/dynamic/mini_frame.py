@@ -44,10 +44,10 @@ def index():
             <td> %s </td>
             <td> %s </td>
             <td> %s </td>
-            <td> %s </td>
-            <td> %s </td>
-            <td> %s </td>
-            <td> 0.88 </td>
+            <td> 33 </td>
+            <td> 22 </td>
+            <td> 23</td>
+            <td> 88 </td>
             <td> %s</td>
             <td>
                 <input type="button" value="添加" id="add" systemidvaule='00007'> 
@@ -57,7 +57,7 @@ def index():
     html = ''
     for line_info in stock_infos:
         html += str_template % (line_info[0], line_info[1], line_info[2], line_info[
-                                3], line_info[4], line_info[5], line_info[6], line_info[7])
+                                3], line_info[4])
 
     content = re.sub(r"\{%content%\}", str(html), content)
 
