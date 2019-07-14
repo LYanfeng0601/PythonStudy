@@ -21,11 +21,6 @@ def route(url):
         return call_func
     return set_func
 
-@route(r"/add(\d+)\.html")
-def add_focus(ret):
-    stock_code = ret.group(1)
-    return "add %s OK" % stock_code
-
 @route("/index.html")
 def index(ret):
     with open("./templates/index.html") as f:
@@ -61,7 +56,7 @@ def index(ret):
     html = ''
     for line_info in stock_infos:
         html += str_template % (line_info[0], line_info[1], line_info[2], line_info[
-                                3], line_info[4],line_info[5])
+                                3], line_info[4], line_info[5])
 
     content = re.sub(r"\{%content%\}", str(html), content)
 
@@ -72,7 +67,8 @@ def index(ret):
 def center(ret):
     with open("./templates/center.html") as f:
         content = f.read()
-    conn = connect(host='192.168.0.103', port=3306, user='root',password='root', database='stock_db', charset='utf8')
+    conn = connect(host='192.168.0.103', port=3306, user='root',
+                   password='root', database='stock_db', charset='utf8')
     # 获得Cursor对象
     cs = conn.cursor()
     cs.execute("select  i.code,i.chg,i.turnover,i.highs,f.note_info from infor as i inner join focus as f on i.id=f.info_id;")
@@ -100,12 +96,16 @@ def center(ret):
     html = ''
     for line_info in stock_infos:
         html += tr_template % (line_info[0], line_info[1], line_info[2], line_info[
-                                3], line_info[4])
+            3], line_info[4])
    # my_stock_info = "这里是从mysql查询出来的数据。。。"
 
     content = re.sub(r"\{%content%\}", str(html), content)
 
     return content
+
+@route(r"/add/\d+\.html")
+def add():
+    return "add OK"
 
 
 def application(env, start_response):
@@ -126,11 +126,12 @@ def application(env, start_response):
     try:
         # func = URL_FUNC_DICT[file_name]
         # return func()
-        for url,func in URL_FUNC_DICT():
-            ret = re.match(url,file_name)
-            if ret:
-                return fun(ret)
-            else:
-                return "请求的url(%s)没有对应的函数" % file_name
+        # for url,func in URL_FUNC_DICT():
+          #  ret = re.match(url,file_name)
+            # if ret:
+            #    return fun(ret)
+            # else:
+             #   return "请求的url(%s)没有对应的函数" % file_name
+        return URL_FUNC_DICT[file_name]()
     except Exception as ret:
         return "产生了异常：%s" % str(ret)
