@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.link{
+			font-size: 30px;
+			text-decoration: none;
+			color: green;
+		}
+		/*伪类选择器*/
+		.link:hover{
+			color: gold;
+			font-weight: bold;
+		}
+		.box1,.box2{
+			font-size: 20px;
+		}
+		/*伪元素 */
+		.box1:before{
+			content: "前面的文字"
+		}
+		.box2:after{
+			content: "后面的文字"
+		}
+	</style>
+</head>
+<body>
+	<a href="http://www.baidu.com" class="link">百度</a>
+	<div class="box1"> 这是第一个div</div>
+	<div class="box2"> 这是第二个div</div>
+	<div class="box3"> 这是第三个div</div>
+</body>
+</html>
