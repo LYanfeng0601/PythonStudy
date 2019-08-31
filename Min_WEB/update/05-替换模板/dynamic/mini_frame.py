@@ -104,7 +104,9 @@ def center():
     content = re.sub(r"\{%content%\}", html, content)
 
     return content
-
+route(r"/add/\d+\.html")
+def add():
+    return "add OK"
 
 def application(env, start_response):
     start_response('200 OK', [('Content-Type', 'text/html;charset=utf-8')])

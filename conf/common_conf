@@ -1,0 +1,9 @@
+[docker_mysql]
+host = 191.168.0.103
+port = 3307
+user = root
+password = 123456
+db = liyanfeng
+charset = utf8
+[test1]
+a=1

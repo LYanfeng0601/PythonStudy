@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.box{
+			width: 300px;
+			height: 200px;
+			background-color: gold;
+			/*第一种解决塌陷的方法(只针对top)*/
+			/*border:1px solid;*/
+			/*第二种解决的方法*/
+			/*overflow: hidden;*/
+				
+		}
+		.box1{
+			width: 100px;
+			height: 100px;
+			margin-top: 100px;
+			background-color: green;
+		}
+		/*第三种解决问题的方法*/
+		.clearfix:before{
+			content: "";
+			display: table;
+		}
+	</style>
+</head>
+<body>
+	<div class="box clearfix">
+		<div class="box1">
+		</div>
+	</div>
+</body>
+</html>
