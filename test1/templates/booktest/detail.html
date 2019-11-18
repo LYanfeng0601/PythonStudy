@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示图书想相关的英雄信息</title>
+    <h1>{{ book.btitle}}</h1>
+    英雄信息如下:
+    {% for hero in heros %}
+    <li>{{ hero.hname}}</li>
+    {% empty %}
+        <li>没有英雄信息</li>
+    {% endfor %}
+</head>
+<body>
+
+</body>
+</html>

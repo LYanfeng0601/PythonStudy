@@ -67,3 +67,7 @@ if __name__ == '__main__':
     print(type(config))
     print(type(configs))
     # port(config[port])
+    if configs == config:
+    	print("jelo")
+    else:
+    	print("no equal")

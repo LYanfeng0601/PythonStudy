@@ -1,0 +1,13 @@
+<html>
+<head>
+    <title>地区自关联</title>
+</head>
+<body>
+<h1>城市名称:{{area.atitle}}</h1>
+<h1>省会名称:{{parent.atitle}}</h1>
+<h1>包含城市名称</h1>
+    {%for c in child%}
+        <li>{{c.atitle}}</li>
+    {%endfor%}
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#sub").click(function () { //定义sub事件
+                var username = $("#uname").val(); //定义变量
+                var password = $("#pwd").val();
+                alert(username)
+                $.ajax({
+                    type: "POST", //请求方式
+                    url: 'http://127.0.0.1:8000/login_check', //请求的接口地址
+                    data: {
+                        username: username, //服务端请求的数据，前者username代表django获取前端的变量名，后者username代表上面定义的变量名
+                        password: password
+                    },
+                    dataType: "JSON", //返回数据格式，前端要求json格式，后端就必须返回json格式的数据
+                    success: function (data) { //data为自定义变量，也可以写成success
+                        if (data.success == '200') { //success为后端返回的key值，也可以用msg进行判断
+                            alert("棒棒棒,登录成功！") //弹出提示框
+                            window.location.href = "/chenggong.html" //跳转到成功页
+                            return true
+                        }
+                        if (data.success == '201') {
+                            alert("用户名或密码错误,请重新输入！")
+                            window.location.href = "/shibai.html" //跳转到失败页
+                            // window.location.reload()
+                            return false
+                        }
+                    },
+                })
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <form>
+        <!-- 这里面的id就等于js中的#uname -->
+        <input type="text" id="uname" name="username" placeholder="用户名"><br>
+        <input type="password" id="pwd" name="password" placeholder="密码"><br>
+    </form>
+    <!-- 这里面的id就等于js中的#sub，只有点击登录按钮，才会走完所有js代码逻辑 -->
+    <input type="button" id="sub" name="登录" value="登录">
+</body>
+
+</html>
