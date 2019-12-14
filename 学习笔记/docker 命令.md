@@ -68,6 +68,8 @@ docker exec -t b13a616c17d9 ls -l /tmp  ## 直接在容器中查询ls，实际�
 docker attach b13a616c17d9 == docker exec -it b13a616c17d9 /bin/bash ##直接进入容器
 ##从容器拷贝文件到主机上
 docker cp 容器id:容器内路径 目的主机路径
+docker commit -a liyanfeng -m "add mysql" 192f3ae5b180 mysql:1.0 # 保存容器为镜像
+
 
 ```
 
