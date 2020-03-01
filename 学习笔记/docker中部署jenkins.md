@@ -8,7 +8,7 @@
 mkdir /home/jenkins；chown -R 1000:1000 /home/jenkins
 ```
 
- ### 三、查询jenkins的镜像
+ ### 三、查询jenkins的镜像-=--
 
 ```shell
 docker search jenkins
