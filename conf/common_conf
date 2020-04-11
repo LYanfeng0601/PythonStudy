@@ -6,4 +6,3 @@ password = 123456
 db = liyanfeng
 charset = utf8
 [test1]
-a=1
