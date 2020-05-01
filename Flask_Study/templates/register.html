@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+</head>
+<body>
+    <form method="post">
+        {{ form.csrf_token }}
+        {{form.username.label}}
+        <p>{{form.username}}</p>
+        {% for msg in form.username.errors %}
+        <p>{{msg}}</p>
+        {% endfor %}
+
+        {{form.passwd.label}}
+        <p>{{form.passwd}}</p>
+        {% for msg in form.passwd.errors %}
+        <p>{{msg}}</p>
+        {% endfor %}
+
+        {{form.passwd1.label}}
+        <p>{{form.passwd1}}</p>
+        {% for msg in form.passwd1.errors %}
+        <p>{{msg}}</p>
+        {% endfor %}
+
+        {{form.submit()}}
+    </form>
+
+</body>
+</html>

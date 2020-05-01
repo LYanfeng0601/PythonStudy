@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    {% for message in get_flashed_messages() %}
+        {{ message }}
+    {% endfor %}
+    <hr/>
+    {% macro input() %}
+    <input type="text" value="" size="30">
+    {% endmacro %}
+    <h1>input 1</h1>
+    {{ input() }}
+    <hr/>
+    {% macro input1(type,value,size) %}
+    <input type="{{ type }}" value="{{ value }}" size="{{ size }}">
+    {% endmacro %}
+    <h1>input 1</h1>
+    {{ input1("password","","50") }}
+    <hr/>
+    {% macro input2(type="text",value="",size=30) %}
+    <input type="{{ type }}" value="{{ value }}" size="{{ size }}">
+    {% endmacro %}
+    <h1>input 2</h1>
+    {{ input2() }}
+        <hr/>
+        <hr/>
+    {% import "macro_input.html" as m_input %}
+    {{ m_input.input3() }}
+</head>
+<body>
+
+</body>
+</html>

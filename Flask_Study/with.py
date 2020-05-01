@@ -1,7 +1,4 @@
 # coding:utf-8
-
-
-
 class Foo(object):
     def __enter__(self):
         print("enter called")
