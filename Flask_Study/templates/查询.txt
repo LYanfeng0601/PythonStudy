@@ -1,0 +1,16 @@
+>>> user = User.query.offset(2).all()   # .offset 跳过几条
+>>> user[0].name
+u'chen'
+
+>>> user = User.query.offset(2).limit(2).all
+>>> user
+
+# 排序；降序
+>>> User.query.order_by(User.id.desc()).all()
+[<User 4>, <User 3>, <User 2>, <User 1>]
+# 排序；升序db.session.
+>>> User.query.order_by(User.id).all()
+[<User 4>, <User 3>, <User 2>, <User 1>]
+
+## SELECT id,COUNT(id) FROM t_users GROUP BY role_id;
+db.session.query(User.role_id,func.count(User.role_id)).group_by(User.role_id).all()

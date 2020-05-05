@@ -20,6 +20,8 @@ class Role(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     name = db.Column(db.String(32),unique=True)
     users = db.relationship("User",backref = "user_role")
+    def __repr__(self):
+        return  "Role object name : %s" % self.name
 
 class User(db.Model):
     """用户表"""
@@ -38,5 +40,17 @@ if __name__ == '__main__':
     db.drop_all()
     #创建所有的表
     db.create_all()
-
+    role1 = Role(name="admin")  #创建对象
+    role2 = Role(name="stuff")  # 创建对象
+    db.session.add(role1) #session记录任务对象
+    db.session.commit() # 提交
+    role2 = Role(name="stuff")  # 创建对象
+    db.session.add(role2) #session记录任务对象
+    db.session.commit() # 提交
+    us1 = User(name='wang',email='wang@163.com',passwd='123456',role_id=role1.id)
+    us2 = User(name='zhang',email='zhang@189.com',passwd='201512',role_id=role2.id)
+    us3 = User(name='chen',email='chen@126.com',passwd='987654',role_id=role2.id)
+    us4 = User(name='zhou',email='zhou@163.com',passwd='456789',role_id=role1.id)
+    db.session.add_all([us1,us2,us3,us4])
+    db.session.commit()
 
