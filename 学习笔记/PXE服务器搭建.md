@@ -12,7 +12,7 @@
 /usr/sbin/dhcpd   # 启动脚本配置文件
 [root@PXE pxelinux.cfg]# vi /etc/dhcp/dhcpd.conf   # 调整配置文件
 option domain-name "itwish.cn";
-option domain-name-servers 192.168.0.103 ;
+option domain-name-servers 192.168.0.103 ;；
 
 default-lease-time 600;
 max-lease-time 7200;

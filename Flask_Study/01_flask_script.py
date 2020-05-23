@@ -7,8 +7,8 @@ manager = Manager(app)
 @app.route("/index")
 def index():
     return "index"
-
-
 if __name__ == '__main__':
     #app.run(debug=True)
     manager.run() #通关管理对象启动flask
+
+asdfass
